@@ -12,6 +12,9 @@ jobs:
     # Runner — use the latest version of an Ubuntu virtual machine
     runs-on: ubuntu-latest
     steps:
+      - name : Checkout code
+        uses: actions/checkout@v6
+        
       # Step 1 — print a welcome message to the console
       - name: updated Welcome Message
         run: echo "Welcome to the CICD world with GitHub Actions"
