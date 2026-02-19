@@ -1,24 +1,19 @@
-# Name of the workflow — appears in the GitHub Actions tab
-name: First Workflow
-
-# Trigger — this workflow runs whenever code is pushed to any branch
+name: Firt Workflow
 on:
   - push
 
-jobs: 
-  # Job ID — the unique name for this job
-  first_job: 
-    # Runner — use the latest version of an Ubuntu virtual machine
+jobs:
+  first_job:
+    name: DevOps First Job
     runs-on: ubuntu-latest
     steps:
-      # Step 1 — print a welcome message to the console
-      - name: Welcome Message
-        run: echo "My first GitHub Actions Job"
+      - name: Checkout Code
+        uses: actions/checkout@v6
 
-      # Step 2 — list all files in the current working directory
-      - name: List Files 
-        run: ls 
-
-      # Step 3 — print the contents of the dockerfile to the console
-      - name: Read file 
-        run: cat dockerfile
+      - name: List and read files
+        run: |
+          echo "My first Github Actions job"
+          ls -la
+          cat happy.txt
+          cat dockerfile
+    
