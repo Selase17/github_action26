@@ -1,2 +1,2 @@
 I am happy learning Github Actions
-this is day 2
+this is day two
