@@ -10,5 +10,8 @@ jobs:
             - name: Checkout Code
               uses: actions/checkout@v6
 
+            - name: Make Bash Script Executable
+              run: chmod +x ascii-script.sh
+
             - name: Execute Shell Script  
               run: ./ascii-script.sh
