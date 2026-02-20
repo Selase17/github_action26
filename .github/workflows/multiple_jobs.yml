@@ -32,6 +32,8 @@ jobs:
     
     # 2nd Job: Test
     test:
+      # The test job will be dependent on the successful completion of the build job
+      needs: build
       # The job will be running on the latest version of Ubuntu
       runs-on: ubuntu-latest
       # Defining the steps to be executed in the test job
@@ -46,6 +48,8 @@ jobs:
 
     # 3rd Job: Deploy
     deploy:
+      # The deploy job will be dependent on the successful completion of the test job
+      needs: test
       # The job will be running on the latest version of Ubuntu
       runs-on: ubuntu-latest
       # Defining the steps to be executed in the deploy job
