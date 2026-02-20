@@ -1,0 +1,58 @@
+# Name of the workflow
+name: Build, Test and Deploy
+
+# The workflow will be running on push events
+on:
+  - push
+
+# Defining the jobs to be executed in the workflow  
+jobs:
+    # 1st Job: Build
+    build:
+      # The job will be running on the latest version of Ubuntu
+      runs-on: ubuntu-latest
+
+      # Defining the steps to be executed in the build job
+      steps:
+        # Step 1: Checkout the code from the repository (github_action26)
+        - name: Checkout Code
+          uses: actions/checkout@v6
+        
+        # Step 2: Install Cowsay Program
+        - name: Install Cowsay Program
+          run: sudo apt-get install cowsay -y
+
+        # Step 3: Execute Cowsay Command and save the output to a file named dragon.txt
+        - name: Execute Cowsay Command
+          run: cowsay -f dragon "Run for cover, I am a DRAGON ..... RAWR" >> dragon.txt
+
+        # Step 4: Waiting for 30 seconds to simulate a build process
+        - name: Sleep for 30 Seconds
+          run: sleep 30
+    
+    # 2nd Job: Test
+    test:
+      # The job will be running on the latest version of Ubuntu
+      runs-on: ubuntu-latest
+      # Defining the steps to be executed in the test job
+      steps:
+        # Step1: Sleep for 10 seconds to simulate a testing process
+        - name: Sleep for 10 Seconds
+          run: sleep 10
+
+        # Step 2: Check if the file dragon.txt exists and contains the word "dragon"
+        - name: Test file exists
+          run: grep -i "dragon" dragon.txt
+
+    # 3rd Job: Deploy
+    deploy:
+      # The job will be running on the latest version of Ubuntu
+      runs-on: ubuntu-latest
+      # Defining the steps to be executed in the deploy job
+      steps:
+        # Step 1: read the content of the file dragon.txt
+        - name: Read file
+          run: cat dragon.txt
+        # Step 2: Deploy to production environment (simulated by echo command)
+        - name: Deploy to Production
+          run: echo "Deploying to production environment"
